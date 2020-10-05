@@ -1,0 +1,25 @@
+$color-yellow: #d6c90a;
+$hex-dark-grey: #424242;
+$hex-medium-grey: #767676;
+$hex-light-grey: #d5d5d5;
+$hex-white: #ffffff;
+$hex-black: #000000;
+
+$background-light: $hex-light-grey;
+$background-dark: $hex-dark-grey;
+
+$text-color: $hex-black;
+
+/** spacing */
+$spacing-xsmall: 4px;
+$spacing-small: 8px;
+$spacing-base: 16px;
+$spacing-medium: 20px;
+$spacing-large: 24px;
+$spacing-xlarge: 30px;
+
+/** dimensions */
+$header-height: 60px;
+
+/*layers*/
+$z-index-header: 10;
