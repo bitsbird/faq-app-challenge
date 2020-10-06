@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Main from '@/views/Main.vue';
 import ContactForm from '@/views/ContactForm.vue';
 import Orders from '@/views/Orders.vue';
-
+import OrderDetail from '@/views/OrderDetail.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,6 +16,13 @@ const routes = [
     path: '/orders',
     name: 'orders',
     component: Orders,
+    children: [
+      {
+        path: ':reference',
+        name: 'orderDetail',
+        component: OrderDetail,
+      },
+    ],
   },
   {
     path: '/contact-form',

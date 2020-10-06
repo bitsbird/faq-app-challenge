@@ -1,28 +1,46 @@
 <template>
   <div :class="$style.Orders">
-    <input :class="$style.SearchBar" type="search" placeholder="search" />
-    <button>Next</button>
-    <ul>
-      <li v-for="order in orders" :key="order.reference">
-        {{ order.reference }}
-      </li>
-    </ul>
+    <BaseLoading isFullPage v-if="loading" />
+    <div v-else>
+      <SearchBar placeholder="order reference" v-model="orderReference" />
+      <router-link
+        tag="span"
+        :to="{ name: 'orderDetail', params: { reference: 80 } }"
+      >
+        <button>Next</button>
+      </router-link>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import { fetch } from '@/api/ordersService';
+import SearchBar from '@/components/form/SearchBar.vue';
 export default {
+  components: {
+    SearchBar,
+  },
   data() {
     return {
-      orderReference: null,
-      orders: [],
+      orderReference: '',
+      loading: false,
     };
   },
   created() {
-    fetch().then((orders) => {
-      this.orders = orders;
-    });
+    this.loading = true;
+    this.$store
+      .dispatch('fetchOrders')
+      .catch(() => {
+        console.log('something went wrong');
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  },
+  computed: {
+    ordersCollection() {
+      return this.$store.getters['ordersCollection'];
+    },
   },
 };
 </script>
@@ -30,9 +48,5 @@ export default {
 <style module lang="scss">
 .Orders {
   display: flex;
-
-  .SearchBar {
-    min-width: 400px;
-  }
 }
 </style>
