@@ -9,7 +9,9 @@ export default new Vuex.Store({
     orders: [],
   },
   getters: {
-    ordersCollection: (state) => [...state.orders],
+    getOrderByReference: (state) => (reference) => {
+      return state.orders.find((o) => o.reference === reference);
+    },
   },
   mutations: {
     SET_ORDERS(state, orders) {

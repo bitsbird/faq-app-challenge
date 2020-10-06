@@ -41,17 +41,22 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
+  position: relative;
 
   .icon {
-    transform: translateX($icon-square-height + $spacing-xsmall);
-    display: inline-block;
+    position: absolute;
+    left: $spacing-xsmall;
+    top: 50%;
+    transform: translateY(-50%);
     width: $icon-square-height;
     height: $icon-square-height;
   }
 
   .field {
     width: 100%;
-    padding-left: ($icon-square-height + $spacing-small);
+    height: $input-height;
+    padding: $spacing-base;
+    padding-left: ($icon-square-height + $spacing-base);
   }
 }
 </style>
