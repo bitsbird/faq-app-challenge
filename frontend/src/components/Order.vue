@@ -1,33 +1,54 @@
 <template>
   <div :class="$style.Order">
     <h4>Order detail</h4>
-    <div :class="$style.row">
-      <div :class="[$style.column, $style.label]">Reference</div>
-      <div :class="[$style.column, $style.value]">{{ order.reference }}</div>
-    </div>
-    <div :class="$style.row">
-      <div :class="[$style.column, $style.label]">Date</div>
-      <div :class="[$style.column, $style.value]">{{ formattedDate }}</div>
-    </div>
-    <div :class="$style.row">
-      <div :class="[$style.column, $style.label]">Delivered</div>
-      <div :class="[$style.column, $style.value]">{{ formattedDelivery }}</div>
-    </div>
-    <div :class="$style.row">
-      <div :class="[$style.column, $style.label]">Cost</div>
-      <div :class="[$style.column, $style.value]">{{ formattedCost }}</div>
-    </div>
+    <OrderTable :template-columns="colWidths">
+      <OrderTableRow>
+        <OrderTableColumn> Reference </OrderTableColumn>
+        <OrderTableColumn>
+          {{ order.reference }}
+        </OrderTableColumn>
+      </OrderTableRow>
+      <OrderTableRow>
+        <OrderTableColumn> Date </OrderTableColumn>
+        <OrderTableColumn>
+          {{ formattedDate }}
+        </OrderTableColumn>
+      </OrderTableRow>
+      <OrderTableRow>
+        <OrderTableColumn> Delivered </OrderTableColumn>
+        <OrderTableColumn>
+          {{ formattedDelivery }}
+        </OrderTableColumn>
+      </OrderTableRow>
+      <OrderTableRow>
+        <OrderTableColumn> Cost </OrderTableColumn>
+        <OrderTableColumn>
+          {{ formattedCost }}
+        </OrderTableColumn>
+      </OrderTableRow>
+    </OrderTable>
   </div>
 </template>
 
 <script>
-import { Utils } from '@/Utils';
+import { Utils } from "@/Utils";
+import OrderTable from "@/components/grid/GridLayout.vue";
+import OrderTableRow from "@/components/grid/GridLayoutRow.vue";
 export default {
+  components: {
+    OrderTable,
+    OrderTableRow,
+  },
   props: {
     order: {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      colWidths: ["2fr", "1fr"],
+    };
   },
   computed: {
     formattedDate() {
@@ -37,7 +58,7 @@ export default {
       return Utils.formattedAmount(this.order.cost);
     },
     formattedDelivery() {
-      return this.order.delivered ? 'yes' : 'no';
+      return this.order.delivered ? "yes" : "no";
     },
   },
 };
@@ -48,15 +69,6 @@ export default {
   @include box-wrapper;
   display: flex;
   flex-direction: column;
-
-  .row {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .column + .column {
-    margin-left: $spacing-medium;
-  }
 
   .label {
     @include base-font;
