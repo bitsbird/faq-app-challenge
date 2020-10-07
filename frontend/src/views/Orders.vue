@@ -16,7 +16,7 @@
         {{ error }}
       </div>
       <div v-if="order" :class="$style.row">
-        order
+        <Order :order="order" />
       </div>
     </div>
   </div>
@@ -24,9 +24,11 @@
 
 <script>
 import SearchBar from '@/components/form/SearchBar.vue';
+import Order from '@/components/Order.vue';
 export default {
   components: {
     SearchBar,
+    Order,
   },
   data() {
     return {
