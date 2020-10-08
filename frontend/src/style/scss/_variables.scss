@@ -29,3 +29,8 @@ $z-index-header: 10;
 $border-radius: 3px;
 $box-shadow-spread: 4px;
 $box-shadow: 0px 0px $box-shadow-spread 0px rgba($hex-black, 0.24);
+
+/** screen widths  */
+$width-tablet-start: 640px;
+/** media queries  */
+$media-min-tablet: 'only screen and (min-width: #{$width-tablet-start})';

@@ -53,8 +53,7 @@ export default {
   }
 
   .field {
-    width: 100%;
-    height: $input-height;
+    @include input-field;
     padding: $spacing-base;
     padding-left: ($icon-square-height + $spacing-base);
   }

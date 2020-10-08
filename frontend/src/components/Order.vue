@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.Order">
     <h4>Order detail</h4>
-    <OrderTable :template-columns="colWidths">
+    <OrderTable>
       <OrderTableRow>
         <OrderTableColumn> Reference </OrderTableColumn>
         <OrderTableColumn>
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import { Utils } from "@/Utils";
-import OrderTable from "@/components/grid/GridLayout.vue";
-import OrderTableRow from "@/components/grid/GridLayoutRow.vue";
+import { Utils } from '@/Utils';
+import OrderTable from '@/components/grid/GridTwoColumnsLayout.vue';
+import OrderTableRow from '@/components/grid/GridLayoutRow.vue';
 export default {
   components: {
     OrderTable,
@@ -45,11 +45,6 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      colWidths: ["2fr", "1fr"],
-    };
-  },
   computed: {
     formattedDate() {
       return Utils.formattedDate(this.order.date);
@@ -58,7 +53,7 @@ export default {
       return Utils.formattedAmount(this.order.cost);
     },
     formattedDelivery() {
-      return this.order.delivered ? "yes" : "no";
+      return this.order.delivered ? 'yes' : 'no';
     },
   },
 };

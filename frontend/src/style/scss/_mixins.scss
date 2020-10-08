@@ -39,3 +39,9 @@
   box-shadow: $box-shadow;
   background-clip: padding-box;
 }
+
+@mixin input-field() {
+  @include base-font;
+  width: 100%;
+  height: $input-height;
+}

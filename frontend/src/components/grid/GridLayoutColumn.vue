@@ -6,9 +6,7 @@
 
 <style module lang="scss">
 .GridLayoutColumn {
-  padding: 0.5rem;
   word-break: break-word;
   color: $hex-dark-grey;
 }
 </style>
-
